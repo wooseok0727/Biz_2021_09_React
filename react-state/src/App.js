@@ -24,8 +24,18 @@ function App() {
 
   // input box의 데이터 change event를 처리할 함수 선언
   const bbsChange = (e) => {
+    // 구조분해할당
     const { name, value } = e.target;
+
+    // 배열요소로 변수 선언하기
     setBBs({ ...bbsVO, [name]: value });
+
+    // 아래의 중복되는 if문을 사용한 코드를 단순화 시킬 수 있다
+    // if(name === "b_date") {
+    //   setBBs({...bbsVO, b_date: value});
+    // } else if (name === "b_time") {
+    //   setBBs({...bbsVO,b_time : value})
+    // }
   };
 
   /**

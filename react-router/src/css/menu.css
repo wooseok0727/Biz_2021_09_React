@@ -1,0 +1,18 @@
+ul.main_menu {
+  display: flex;
+  background-color: #1f2739;
+  color: #ffffff;
+  list-style: none;
+}
+
+/*
+    react-router-dom의 Link 컴포넌트로 navigation을 구현하면
+    css를 a tag를 대상으로 설정해준다
+*/
+ul.main_menu a {
+  display: inline-block;
+  color: inherit;
+  padding: 1rem;
+  text-decoration: none;
+  margin-left: 20px;
+}
