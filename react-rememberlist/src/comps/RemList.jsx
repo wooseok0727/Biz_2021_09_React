@@ -168,14 +168,12 @@ function RemList() {
         if (prev.r_comp === next.r_comp) {
           return prev.r_date >= next.r_date && prev.r_time > next.r_time
             ? -1
-            : prev.r_date <= next.r_date && prev.r_time < next.r_time
+            : prev.r_date < next.r_date && prev.r_time < next.r_time
             ? 1
             : 0;
         }
-
         return next.r_comp - prev.r_comp;
       });
-      console.log(_list);
       setRememberList([..._list]);
     }
   };
