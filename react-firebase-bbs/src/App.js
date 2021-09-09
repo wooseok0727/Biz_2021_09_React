@@ -9,7 +9,7 @@ const App = () => {
         <BBS.Header />
         <BBS.MainNav />
         <Route path="/" component={BBS.BBsMain} exact />
-        <Route path="/write" />
+        <Route path="/write" component={BBS.BBsWrite} exact />
         <Route path="/login" />
         <Route path="/join" />
         <BBS.Footer />

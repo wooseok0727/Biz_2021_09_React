@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import "../css/bbsList.css";
 import UUID from "react-uuid";
 
-const headArray = ["DATA", "TIME", "WRITER", "SUBJECT"];
+const headArray = ["DATE", "TIME", "WRITER", "SUBJECT"];
 
 const bbsSampleDat = {
   b_id: UUID(),
