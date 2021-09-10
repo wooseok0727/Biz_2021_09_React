@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import "../css/bbsList.css";
 import UUID from "react-uuid";
 
@@ -12,6 +13,7 @@ const bbsSampleDat = {
   b_subject: "BBS",
 };
 const BBsList = () => {
+  const history = useHistory();
   const bbs_header = useCallback(() => {
     return headArray.map((title) => {
       return <th key={UUID()}>{title}</th>;
@@ -22,7 +24,12 @@ const BBsList = () => {
 
   const list_body = bbsList.map((bbs) => {
     return (
-      <tr key={bbs.b_id}>
+      <tr
+        key={bbs.b_id}
+        onClick={() => {
+          history.push(`/detail`);
+        }}
+      >
         <td>{bbs.b_date}</td>
         <td>{bbs.b_time}</td>
         <td>{bbs.b_writer}</td>

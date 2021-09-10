@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header className="App-header">
       <h1>REACT BBS 2021</h1>
-      <p>React &amp; firebase BBS</p>
+      <h5>React &amp; firebase BBS</h5>
     </header>
   );
 };

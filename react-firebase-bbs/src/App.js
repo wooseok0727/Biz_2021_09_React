@@ -10,6 +10,7 @@ const App = () => {
         <BBS.MainNav />
         <Route path="/" component={BBS.BBsMain} exact />
         <Route path="/write" component={BBS.BBsWrite} exact />
+        <Route path="/detail" component={BBS.BBsDetail} exact />
         <Route path="/login" />
         <Route path="/join" />
         <BBS.Footer />

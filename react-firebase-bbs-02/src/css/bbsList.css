@@ -4,6 +4,8 @@ table.bbs_list {
   border-collapse: collapse;
   border-spacing: 0;
   color: #ffffff;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 table.bbs_list th,

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import "../css/BBs.css";
+import React, { useCallback, useEffect, useState } from "react";
+import "../css/bbsList.css";
 import { firestore } from "../config/BBSConfig";
 import { useHistory } from "react-router-dom";
 
 const BBsMain = () => {
   const router = useHistory();
   const [bbsData, setBBsData] = useState([]);
-  // eslint-disable-next-line
+
   const firebaseFetch = async () => {
     /**
      * 칼럼으로 정렬하기
@@ -47,7 +47,9 @@ const BBsMain = () => {
     });
     setBBsData(bbsList);
   };
-  useEffect(firebaseFetch, []);
+
+  const fetchCallback = useCallback(firebaseFetch, []);
+  useEffect(fetchCallback, [fetchCallback]);
 
   const bbsBody = bbsData.map((bbs) => {
     return (
@@ -57,8 +59,8 @@ const BBsMain = () => {
         onClick={(e) => {
           const id = e.target.closest("TR").dataset.id;
           // alert("안녕 : " + id);
-          // write URL에 id값을 가지고 redirect 를 수행하라
-          router.push(`/write/${id}`);
+          // detail URL에 id값을 가지고 redirect 를 수행하라
+          router.push(`/detail/${id}`);
         }}
       >
         <td>{bbs.b_date}</td>
@@ -69,17 +71,19 @@ const BBsMain = () => {
     );
   });
   return (
-    <table className="bbs_list">
-      <thead>
-        <tr>
-          <th>DATE</th>
-          <th>TIME</th>
-          <th>WRITER</th>
-          <th>SUBJECT</th>
-        </tr>
-      </thead>
-      <tbody>{bbsBody}</tbody>
-    </table>
+    <section className="main_section">
+      <table className="bbs_list">
+        <thead>
+          <tr className="title_tr">
+            <th>DATE</th>
+            <th>TIME</th>
+            <th>WRITER</th>
+            <th>SUBJECT</th>
+          </tr>
+        </thead>
+        <tbody>{bbsBody}</tbody>
+      </table>
+    </section>
   );
 };
 

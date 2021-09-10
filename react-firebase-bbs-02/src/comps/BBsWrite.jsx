@@ -1,8 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { firestore } from "../config/BBSConfig";
 import moment from "moment";
 import { useHistory, useRouteMatch } from "react-router-dom";
+import "../css/write.css";
 
 /**
  * props.history
@@ -41,16 +41,16 @@ const BBsWrite = () => {
     b_time: "",
   });
 
-  const findByIdFetch = async () => {
+  const findByIdFetch = useCallback(async () => {
     if (docId) {
       const result = await firestore.collection("bbs").doc(docId).get();
       if (result.data()) {
         setBBs(result.data());
       }
     }
-  };
+  }, [docId]);
 
-  useEffect(findByIdFetch, []);
+  useEffect(findByIdFetch, [findByIdFetch]);
 
   // onChange Event 핸들러
   // 키보드로 입력한 데이터를 bbs 객체에 setting 하는 일을 수행한다
@@ -94,16 +94,16 @@ const BBsWrite = () => {
 
   return (
     <div className="bbs_write">
-      <div>
+      <div className="input_box">
+        <h1>BBS WRITE</h1>
         <input
           type="text"
           name="b_writer"
           placeholder="작성자"
+          autoComplete="off"
           onChange={onChange}
           defaultValue={bbs.b_writer}
         />
-      </div>
-      <div>
         {/* tag code 내에 작성하는 주석문 */}
         {/* input tag의 onChange 이벤트 핸들러
             input box에 데이터(문자열)을 입력하면
@@ -113,21 +113,18 @@ const BBsWrite = () => {
           type="text"
           name="b_subject"
           placeholder="제목"
+          autoComplete="off"
           onChange={onChange}
           defaultValue={bbs.b_subject}
         />
-      </div>
-      <div>
-        <input
-          type="text"
+        <textarea
           name="b_content"
           placeholder="내용"
+          autoComplete="off"
           onChange={onChange}
           defaultValue={bbs.b_content}
-        />
-      </div>
-      <div>
-        <button onClick={onClickSave}>저장</button>
+        ></textarea>
+        <button onClick={onClickSave}>SAVE</button>
       </div>
     </div>
   );
