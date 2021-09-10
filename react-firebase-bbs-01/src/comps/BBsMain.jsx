@@ -5,10 +5,11 @@ import { firestore } from "../config/BBSConfig";
 const BBsMain = () => {
   const [bbsBody, setBBsBody] = useState([]);
   const bbsRef = useRef();
+
   console.log(bbsBody === bbsRef.current);
   const firebaseFetch = () => {
+    const bbsArray = [];
     if (bbsBody !== bbsRef.current) {
-      const bbsArray = [];
       firestore
         .collection("bbs")
         .get()
