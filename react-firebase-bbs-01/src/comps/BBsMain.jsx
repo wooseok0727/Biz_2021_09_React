@@ -1,30 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../css/BBs.css";
 import { firestore } from "../config/BBSConfig";
 
 const BBsMain = () => {
   const [bbsBody, setBBsBody] = useState([]);
+  const bbsRef = useRef();
+  console.log(bbsBody === bbsRef.current);
   const firebaseFetch = () => {
-    firestore
-      .collection("bbs")
-      .get()
-      .then((bbsList) => {
-        bbsList.forEach((bbs) => {
-          const item = bbs.data();
-          setBBsBody([
-            ...bbsBody,
-            <tr>
-              <td>{item.b_date}</td>
-              <td>{item.b_time}</td>
-              <td>{item.b_write}</td>
-              <td>{item.b_subject}</td>
-            </tr>,
-          ]);
+    if (bbsBody !== bbsRef.current) {
+      const bbsArray = [];
+      firestore
+        .collection("bbs")
+        .get()
+        .then((bbsList) => {
+          bbsList.forEach((bbs) => {
+            const item = bbs.data();
+            bbsArray.push([
+              ...bbsBody,
+              <tr>
+                <td>{item.b_date}</td>
+                <td>{item.b_time}</td>
+                <td>{item.b_writer}</td>
+                <td>{item.b_subject}</td>
+              </tr>,
+            ]);
+          });
+          bbsRef.current = bbsArray;
+          setBBsBody(bbsArray);
         });
-      });
+    }
   };
+  useEffect(firebaseFetch, [bbsBody]);
 
-  useEffect(firebaseFetch, []);
   return (
     <table className="bbs_list">
       <thead>
