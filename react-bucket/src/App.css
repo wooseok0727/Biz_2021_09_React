@@ -12,17 +12,6 @@
   background-color: #1c222e;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #1c222e;
   min-height: 15vh;
@@ -32,19 +21,6 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: #4dc3fa;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 section.main_section {
@@ -57,8 +33,12 @@ section.main_section {
 section.main_section input {
   width: 95%;
   outline: none;
-  margin: 15px auto;
-  padding: 0.5rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.3rem;
 }
 
 table.bucket_list {
@@ -66,15 +46,16 @@ table.bucket_list {
   margin: 20px auto;
   border-collapse: collapse;
   border-spacing: 0;
+  font-size: 1.5rem;
 }
 
-table.bucket_list tbody tr:nth-of-type(odd) {
+table.bucket_list th,
+table.bucket_list td {
+  padding: 8px;
+}
+
+table.bucket_list tbody tr {
   background-color: #1c222e;
-  color: #ffffff;
-}
-
-table.bucket_list tbody tr:nth-of-type(even) {
-  background-color: #1f2739;
   color: #ffffff;
 }
 
@@ -86,6 +67,6 @@ table.bucket_list thead tr:first-child {
 footer {
   background-color: #1c222e;
   color: #ffffff;
-  padding: 0.7rem;
+  padding: 1rem;
   font-weight: bold;
 }
