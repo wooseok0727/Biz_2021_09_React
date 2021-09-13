@@ -22,7 +22,6 @@ function BuckList(props) {
       />
     );
   });
-  // 부모 컴퍼넌트로 전달받은 bucketList를 사용하기위해 변수로 선언하기
   return (
     <table className="w3-table w3-table-all w3-margin">
       <thead>
