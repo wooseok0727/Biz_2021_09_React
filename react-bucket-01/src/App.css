@@ -13,9 +13,17 @@
   color: white;
 }
 
+td {
+  cursor: pointer;
+}
+
 footer {
   background-color: #282c34;
   padding: 1rem;
   color: #ffffff;
   font-weight: bold;
+}
+
+table {
+  table-layout: fixed;
 }
