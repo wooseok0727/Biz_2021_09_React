@@ -65,7 +65,7 @@ function BucketMain() {
       }
     });
     // 원래의 list를 새로운 list로 바꾸기
-    setBuckList(_bucketList);
+    setBuckList([..._bucketList]);
   };
 
   const bucket_complete = (id) => {
