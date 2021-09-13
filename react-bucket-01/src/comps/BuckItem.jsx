@@ -4,11 +4,25 @@ const b_flag_text = ["일반", "중요", "매우중요", "긴급"];
 
 // { bucket }
 // props.bucket 을 직접 사용하도록 변수 생성하기
-function BuckItem({ bucket, flag_change }) {
-  const [bucket_input, setBucketInput] = useState({
+function BuckItem({ args, bucket }) {
+  const { flag_change, bucket_update, bucket_complete } = args;
+  const [b_update, setB_Update] = useState({
     b_title: "",
     isEdit: false,
   });
+
+  const buck_KeyDown = (e) => {
+    if (e.keyCode === 13) {
+      const b_title = e.target.value;
+      const b_id = e.target.closest("TD").dataset.id;
+
+      setB_Update({ ...b_update, isEdit: false });
+
+      // b_id와 b_title을 BucketMain으로 보내서 update 수행하기
+      bucket_update(b_id, b_title);
+    }
+  };
+
   return (
     <tr key={bucket.b_id}>
       <td
@@ -22,22 +36,34 @@ function BuckItem({ bucket, flag_change }) {
         {b_flag_text[bucket.b_flag % 4]}
       </td>
       <td>{bucket.b_start_date}</td>
+      {/* 버킷 text가 담겨있는 td box */}
+      {/*  td box를 클릭하면 isEdit 변수값을 true 로 변경 */}
       <td
+        data-id={bucket.b_id}
         onClick={() => {
-          setBucketInput({
-            ...bucket_input,
-            isEdit: !bucket_input.isEdit,
+          setB_Update({
+            isEdit: true,
             b_title: bucket.b_title,
           });
         }}
       >
-        {bucket_input.isEdit ? (
-          <input defaultValue={bucket_input.b_title} />
+        {/* 
+          td box 가 클릭되고, isEdit가 true 가 되면 input box 를 보여라
+          input box에 원래 버킷의 text를 보여라
+          */}
+        {b_update.isEdit ? (
+          <input onKeyDown={buck_KeyDown} defaultValue={b_update.b_title} />
         ) : (
           <span>{bucket.b_title}</span>
         )}
       </td>
-      <td>{bucket.b_end_date}</td>
+      <td
+        onClick={() => {
+          bucket_complete(bucket.b_id);
+        }}
+      >
+        {bucket.b_end_date}
+      </td>
       <td>
         <input type="checkbox" />
       </td>
