@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .App-header {
@@ -31,4 +34,8 @@ table {
 tr.cancel {
   text-decoration: line-through;
   color: red;
+}
+
+section {
+  flex: 1;
 }

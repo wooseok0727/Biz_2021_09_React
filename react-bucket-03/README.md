@@ -18,3 +18,10 @@
 - 버킷리스트의 버킷 항목을 클릭하면 input Box 가 나타나도록
 - 버킷항목의 td box에 onclick event 설정하기
 - onclick 이 되면
+
+## MongoDB CMD
+
+- mongo
+- use mydb
+- show collections
+- db.bucketlists.find({}).pretty()
