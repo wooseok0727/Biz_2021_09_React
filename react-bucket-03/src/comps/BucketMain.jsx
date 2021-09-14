@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import BuckList from "./BuckList";
 import BuckInput from "./BuckInput";
 import uuid from "react-uuid";
@@ -8,13 +9,20 @@ function BucketMain() {
   // 버킷리스트를 담을 배열
   const [buckList, setBuckList] = useState([]);
 
+  const bucketFetch = async () => {
+    const bucket = await fetch("http://localhost:5000/data");
+    setBuckList([...buckList, bucket]);
+  };
+
+  useEffect(bucketFetch, []);
+
   const buck_insert = (bucket_text) => {
     const bucket = {
       b_id: uuid(),
       b_start_date: moment().format("YYYY[-]MM[-]DD HH:mm:ss"),
       b_title: bucket_text,
       b_flag: 0,
-      b_end_date: "◎",
+      b_end_date: "",
       b_end_check: false,
       b_cancel: false,
     };
@@ -69,13 +77,53 @@ function BucketMain() {
     setBuckList([..._bucketList]);
   };
 
+  /**
+   * JS에서
+   * 문자열 변수에 담긴값이 "" 이거나 null 이거나 undefined 이거나
+   * 숫자형 변수에 담긴값이 0 이거나 NaN 이러한 값이면
+   *
+   * 변수와 함께 논리연산자가 묶였을 때
+   *
+   * 예)
+   * let 변수 = ""
+   * 변수 || 와 같은 코드를 만나면 이 결과는 false 가 된다
+   *
+   * 변수 = 변수 || "대한민국" 이라는 코드를 작성하면
+   * 1. 원래 변수에 ""이 담겨 있으므로 변수 || 은 false 가 되고
+   * 2. OR 연산을 수행하려고 시도한다.
+   * 3. 양쪽 값이 모두 true 일때만 true 가 되고 변수 || 연산은 false 이므로
+   * 이후에 나타나는 코드를 수행하여 좌황의 변수에 대한민국 문자열을 담게 된다
+   *
+   * 변수 = "" || "우리나라" 이런 코드를 만나면
+   * 변수에는 우리나라 라는 문자열이 담기게 된다
+   *
+   * 변수 = "대한민국" || "우리나라" 이런 코드를 만나면
+   * 앞단에서 이미 true가 연산되고 변수에는 대한민국 문자열이 담기게 된다
+   *
+   */
+
   const bucket_complete = (id) => {
     const _bucketList = buckList.map((bucket) => {
       if (bucket.b_id === id) {
         return {
           ...bucket,
-          b_end_date: moment().format("YYYY[-]MM[-]DD HH:mm:ss"),
-          b_end_check: true,
+          b_end_date:
+            bucket.b_end_check || moment().format("YYYY[-]MM[-]DD HH:mm:ss"),
+          b_end_check: !bucket.b_end_check,
+        };
+      } else {
+        return bucket;
+      }
+    });
+    setBuckList(_bucketList);
+  };
+
+  const bucket_cancel = (id) => {
+    const _bucketList = buckList.map((bucket) => {
+      if (bucket.b_id === id) {
+        return {
+          ...bucket,
+          b_cancel: !bucket.b_cancel,
         };
       } else {
         return bucket;
@@ -89,6 +137,7 @@ function BucketMain() {
     flag_change: flag_change,
     bucket_update: bucket_update,
     bucket_complete: bucket_complete,
+    bucket_cancel,
   };
 
   return (
@@ -96,12 +145,7 @@ function BucketMain() {
       <BuckInput buck_insert={buck_insert} />
       {/* BuckList 컴포넌트에 buckList 상태(변수) 전달하기 */}
       {/* BucketItem.jsx에서 실행할 flag_chage() bucket_update() 함수를 매개변수로 전달하기*/}
-      <BuckList
-        args={args}
-        // buckList={buckList}
-        // flag_change={flag_change}
-        // bucket_update={bucket_update}
-      />
+      <BuckList args={args} />
     </div>
   );
 }
