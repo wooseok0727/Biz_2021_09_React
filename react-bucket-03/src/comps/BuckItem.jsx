@@ -17,6 +17,7 @@ function BuckItem({ args, bucket }) {
     const itemTr = e.currentTarget;
     const b_id = itemTr.dataset.id;
     const itemTd = e.target;
+
     if (itemTd.tagName === "TD") {
       const className = itemTd.className;
       if (className.includes("b_flag")) {
