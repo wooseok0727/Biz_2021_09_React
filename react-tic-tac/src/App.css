@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #282c34;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.main_section .board_row {
+  width: 100%;
+  display: flex;
+  font-weight: bold;
+}
+
+.main_section .info {
+  margin-bottom: 10px;
+  color: white;
+}
+
+button {
+  width: 68px;
+  height: 68px;
+  background-color: white;
+  outline: none;
+  border: 1px solid black;
+}
