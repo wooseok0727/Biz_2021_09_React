@@ -35,6 +35,7 @@ function Board() {
 
   const player = flag ? "O" : "X";
   const winner = calcWinnerFor(squares);
+  const message = winner ? `${winner} 의 승리` : `다음 플레이어 : ${player}`;
 
   const reStart = () => {
     setFlag(!flag);
@@ -45,12 +46,9 @@ function Board() {
   // prettier-ignore
   return (
     <div>
-      {!winner ? 
-                 (<div className="info">다음 플레이어 : {player}</div>) 
-               : (<div className="info">{winner} 의 승리</div>)
-      }
+      <div className="info">{message}</div>
       <RenderSquare squares={squares} onSqClick={onSqClick} />
-      {winner ? <div className="re_start" onClick={reStart}> 다시 시작 </div> : ""}
+      {winner && <div className="re_start" onClick={reStart}>다시 시작</div>}
     </div>
   );
 }
