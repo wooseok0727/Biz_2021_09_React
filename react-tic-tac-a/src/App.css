@@ -20,6 +20,7 @@
 }
 
 .box_row {
+  flex: 1;
   display: flex;
   border: 0;
 }
@@ -29,4 +30,9 @@ button {
   border: 1px solid #999;
   height: 100px;
   width: 100px;
+}
+
+.re_start {
+  position: absolute;
+  right: 42%;
 }
