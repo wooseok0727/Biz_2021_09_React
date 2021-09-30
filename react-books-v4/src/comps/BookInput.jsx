@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
 import "../css/BookInput.css";
 import BookView from "./BookView";
-import BookContext from "../context/BookContext";
 import MyButton from "../My/MyButton";
+import { useBookContext } from "../context/AppContextProvider";
 import UUID from "react-uuid";
 
 const BookInput = () => {
-  const { book, setBook, bookList, setBookList } = useContext(BookContext);
+  const { book, setBook, bookList, setBookList } = useBookContext();
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;

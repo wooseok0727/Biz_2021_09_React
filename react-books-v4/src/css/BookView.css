@@ -1,0 +1,13 @@
+div.view_box {
+  width: 80%;
+  border: 1px solid black;
+  margin: 15px auto;
+  font-weight: bold;
+}
+
+div.view_box span {
+  display: inline-block;
+  margin: 20px;
+  border: 1px solid black;
+  width: 40%;
+}

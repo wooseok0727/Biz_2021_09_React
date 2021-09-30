@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import BookInput from "./BookInput";
 import { Route } from "react-router-dom";
 import BookContext from "../context/BookContext";
+import BookList from "./BookList";
+import UUID from "react-uuid";
 
 /**
  * 컴포넌트의 선택적 Rendering
@@ -10,20 +12,32 @@ import BookContext from "../context/BookContext";
  */
 const BookMain = () => {
   const [book, setBook] = useState({
+    b_id: UUID(),
     b_name: "REACT",
     b_genre: "FRONTEND",
   });
 
-  const providerData = { book, setBook };
+  const [bookList, setBookList] = useState([]);
+
+  // 상위 컴포넌트에서 이벤트를 생성하고
+  // 하위 컴포넌트로 전달할때는 반드시 e(event) 매개변수를
+  // 같이 포함하는 것이 좋다
+  const onClick = (e) => {
+    alert("여기는 onClick");
+  };
+
+  const providerData = { book, setBook, bookList, setBookList, onClick };
   return (
     <>
       <BookContext.Provider value={providerData}>
         <Route path="/" exact>
           HOME, 그 페이지는 가장 먼저 보여지는 페이지
         </Route>
-        <Route path="/insert" exact component={BookInput} />
+        <Route path="/insert" exact>
+          <BookInput />
+        </Route>
         <Route path="/list" exact>
-          List VIEW
+          <BookList />
         </Route>
       </BookContext.Provider>
     </>

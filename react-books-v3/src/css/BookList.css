@@ -1,0 +1,11 @@
+table.list_box {
+  width: 80%;
+  border: 1px solid black;
+  margin: 15px auto;
+  border-collapse: collapse;
+}
+
+table.list_box th,
+table.list_box td {
+  padding: 8px;
+}
