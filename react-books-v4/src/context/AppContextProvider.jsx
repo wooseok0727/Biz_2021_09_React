@@ -49,8 +49,8 @@ export const useBookContext = () => {
 const AppContextProvider = ({ children }) => {
   const [book, setBook] = useState({
     b_id: 0,
-    b_name: "THREE js",
-    b_genre: "3D",
+    b_name: "",
+    b_genre: "",
   });
 
   const [bookList, setBookList] = useState([]);

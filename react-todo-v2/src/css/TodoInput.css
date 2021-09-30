@@ -1,0 +1,29 @@
+div.input_box {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  padding: 10px;
+}
+
+div.input_box input {
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #1f2739;
+  padding: 0.5rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+div.input_box button {
+  outline: none;
+  border: none;
+  background: #1f2739;
+  color: white;
+  padding: 0 1.5rem;
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}

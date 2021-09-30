@@ -5,6 +5,7 @@ const BookView = () => {
   const { book } = useBookContext();
   return (
     <div className="view_box">
+      <span>ID : {book.b_id}</span>
       <span>도서명 : {book.b_name}</span>
       <span>장르 : {book.b_genre}</span>
     </div>
