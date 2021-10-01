@@ -4,17 +4,20 @@ main.main_box {
   border: 1px solid #1f2739;
   background: #1f2739;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  color: white;
 }
 
 div.main_title {
   margin: 20px auto;
+  font-size: 2rem;
 }
 
 section.form_wrapper {
-  padding: 1rem;
-  border-bottom: 1px solid #22b8cf;
+  border-bottom: 1px solid #ffffff;
 }
 
 section.list_wrapper {
+  background: #ffffff;
   min-height: 5rem;
+  color: black;
 }
