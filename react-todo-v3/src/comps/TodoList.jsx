@@ -1,16 +1,16 @@
-import { useTodoContext } from "../context/AppContextProvider";
+import { useTodoContext } from "../context/AppContextProvider02";
 import TodoItem from "./TodoItem";
 
 const TodoList = () => {
-  const { todoList } = useTodoContext();
-  const viewList = todoList.map(({ t_id, t_text, t_isComplete }) => {
+  const { todoList, onRemove, onCompClick } = useTodoContext();
+  const viewList = todoList.map((item) => {
     // todo.t_text
     return (
       <TodoItem
-        key={t_id}
-        t_id={t_id}
-        t_text={t_text}
-        t_isComplete={t_isComplete}
+        todo={item}
+        key={item.t_id}
+        onRemove={onRemove}
+        onCompClick={onCompClick}
       />
     );
   });

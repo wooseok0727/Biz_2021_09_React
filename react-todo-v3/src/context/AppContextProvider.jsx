@@ -14,6 +14,7 @@ const AppContextProvider = ({ children }) => {
   const [todoList, setTodoList] = useState([]);
 
   const NextId = useRef(1);
+
   const onChange = (e) => {
     setTodo({
       t_id: NextId.current,
