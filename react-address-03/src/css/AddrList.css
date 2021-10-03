@@ -34,6 +34,9 @@ tbody tr:last-child td:first-child {
 
 tbody tr:last-child td:nth-of-type(5) {
   border-bottom-right-radius: 3px;
+}
+
+tbody tr td:nth-of-type(5) {
   padding-right: 20px;
 }
 
