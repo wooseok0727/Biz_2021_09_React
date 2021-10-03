@@ -1,28 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
+import AddrListItem from "./AddrListItem";
+import "../css/AddrList.css";
+import RemoveModal from "./RemoveModal";
+import { useAddrContext } from "../context/AppContextProvider";
 
 const AddrList = () => {
-  return (
-    <table className="table_wrap">
-      <thead className="table_header">
-        <tr className="item_wrap">
-          <th>ID</th>
-          <th>Name</th>
-          <th>Addr</th>
-          <th>Tel</th>
-          <th>Age</th>
-        </tr>
-      </thead>
+  const { addrList, onRemove } = useAddrContext();
+  const [modal, setModal] = useState(false);
+  const [a_id, setA_id] = useState("");
 
-      <tbody className="table_body">
-        <tr className="item_wrap">
-          <td>1231</td>
-          <td>홍길동</td>
-          <td>광주</td>
-          <td>010-111-1111</td>
-          <td>30</td>
-        </tr>
-      </tbody>
-    </table>
+  const onRemoveClick = (a_id) => {
+    setModal(true);
+    setA_id(a_id);
+  };
+
+  const onCancel = () => {
+    setModal(false);
+  };
+
+  const onConfirm = () => {
+    setModal(false);
+    onRemove(a_id);
+  };
+
+  const viewList = addrList.map((item) => {
+    return (
+      <AddrListItem item={item} key={item.a_id} onRemoveClick={onRemoveClick} />
+    );
+  });
+
+  return (
+    <>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Addr</th>
+            <th>Tel</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+
+        <tbody>{viewList}</tbody>
+      </table>
+      {modal && (
+        <RemoveModal
+          visible={modal}
+          onConfirm={onConfirm}
+          onCancel={onCancel}
+        />
+      )}
+    </>
   );
 };
 

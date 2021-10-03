@@ -1,8 +1,8 @@
 .main_wrapper {
-  width: 100vw;
-  height: 100vh;
-  padding: 30px;
-  color: #333333;
+  width: 70vw;
+  height: 70vh;
+  padding: 60px 30px 30px 30px;
+  margin: 0 auto;
 }
 
 .main_wrapper .table_title {
@@ -14,22 +14,32 @@
   border-radius: 3px;
   font-weight: bold;
   font-size: 20px;
+  position: relative;
 }
 
-.main_wrapper .table_wrap {
+.btn_insert {
+  display: inline-block;
+  background: #e65655;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  top: 25%;
+  right: 2.5%;
+}
+
+.btn_insert:before {
+  content: "+";
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 200;
+  position: absolute;
   width: 100%;
+  top: -5%;
+  right: -7%;
 }
 
-.main_wrapper .table_header {
-  color: #a1a1a1;
-}
-
-.main_wrapper .item_wrap {
-  background: #fff;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
+.btn_insert:hover {
+  box-shadow: 0 0 18px 0 rgba(255, 27, 62, 0.65);
+  cursor: pointer;
 }
