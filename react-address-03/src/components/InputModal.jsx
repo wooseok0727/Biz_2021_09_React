@@ -1,12 +1,13 @@
 import "../css/Modal.css";
 import { useAddrContext } from "../context/AppContextProvider";
 
-const InputModal = ({ onConfirm, onCancel }) => {
+const InputModal = ({ onConfirm, onCancel, message }) => {
   const { addr, onChange } = useAddrContext();
 
   return (
     <div className="modal_warp">
       <div className="modal_block input">
+        <div className="message">{message}</div>
         <div className="input_box">
           <label>Name</label>
           <input

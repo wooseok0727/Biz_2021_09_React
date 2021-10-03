@@ -21,6 +21,7 @@
 
 .modal_block.input {
   width: 60vw;
+  position: relative;
 }
 
 .buttons {
@@ -72,4 +73,12 @@ button {
 button:hover {
   background: #e65655;
   color: white;
+}
+
+.message {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #e65655;
 }

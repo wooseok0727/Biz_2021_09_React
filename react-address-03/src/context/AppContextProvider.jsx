@@ -12,6 +12,12 @@ const _addrTemplete = {
   a_age: "",
 };
 
+const message = {
+  name: "이름을 입력하세요",
+  addr: "주소를 입력하세요",
+  tel: "전화번호를 입력하세요",
+};
+
 const AppContextProvider = ({ children }) => {
   const [addr, setAddr] = useState({ ..._addrTemplete });
 
@@ -25,13 +31,17 @@ const AppContextProvider = ({ children }) => {
   };
 
   const onInsert = () => {
-    if (!addr.a_name) return alert("이름을 입력하세요");
-    if (!addr.a_addr) return alert("주소를 입력하세요");
-    if (!addr.a_tel) return alert("전화번호를 입력하세요");
+    if (!addr.a_name) return message.name;
+    if (!addr.a_addr) return message.addr;
+    if (!addr.a_tel) return message.tel;
     setAddrList([...addrList, addr]);
-    setAddr({ ..._addrTemplete });
+    formClear();
     NextId.current++;
     return false;
+  };
+
+  const formClear = () => {
+    setAddr({ ..._addrTemplete });
   };
 
   const onRemove = (a_id) => {
@@ -44,6 +54,7 @@ const AppContextProvider = ({ children }) => {
     onChange,
     onInsert,
     onRemove,
+    formClear,
   };
 
   return (

@@ -5,9 +5,10 @@ import { useState } from "react";
 import InputModal from "./InputModal";
 
 const AddrMain = () => {
-  const { onInsert } = useAddrContext();
+  const { onInsert, formClear } = useAddrContext();
 
   const [modal, setModal] = useState(false);
+  const [message, setMessage] = useState("");
 
   const onInsertClick = () => {
     setModal(true);
@@ -15,10 +16,14 @@ const AddrMain = () => {
 
   const onCancel = () => {
     setModal(false);
+    setMessage(false);
+    formClear();
   };
 
   const onConfirm = () => {
-    onInsert() === false && setModal(false);
+    const result = onInsert();
+    result === false && setModal(false);
+    setMessage(result);
   };
   return (
     <div className="main_wrapper">
@@ -28,7 +33,12 @@ const AddrMain = () => {
       </div>
       <AddrList />
       {modal && (
-        <InputModal visible={modal} onConfirm={onConfirm} onCancel={onCancel} />
+        <InputModal
+          visible={modal}
+          message={message}
+          onConfirm={onConfirm}
+          onCancel={onCancel}
+        />
       )}
     </div>
   );
