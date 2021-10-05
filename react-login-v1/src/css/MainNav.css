@@ -1,0 +1,28 @@
+.main_nav {
+  display: flex;
+  list-style: none;
+  background: #fff842;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #1f2739;
+}
+
+.main_nav a {
+  display: inline-block;
+  padding: 0.6rem 0.3rem;
+  margin-left: 1rem;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  transition: 0.3s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.main_nav a:hover {
+  border-bottom: 3px solid #1f2739;
+}
+
+.main_nav li:last-child {
+  margin-right: 1rem;
+}
