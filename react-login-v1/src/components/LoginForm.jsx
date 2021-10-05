@@ -17,7 +17,6 @@ const LoginForm = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "same-origin",
       body: JSON.stringify({
         userid: account.userid,
         password: account.password,
@@ -33,6 +32,8 @@ const LoginForm = () => {
     // null 로 인한 오류를 방지하는 코드다
     if (response?.ok) {
       const user = await response.json();
+      console.log("userid", account.userid);
+      console.log("user", user);
       //const user = users.find((item) => item.userid === account.userid);
 
       if (!user) {
