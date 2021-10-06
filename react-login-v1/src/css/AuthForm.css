@@ -1,12 +1,12 @@
-.login_form {
+.auth_form {
   display: flex;
   flex-direction: column;
   width: 70%;
   margin: 2rem auto;
 }
 
-.login_form input,
-.login_form button {
+.auth_form input,
+.auth_form button {
   outline: none;
   height: 3rem;
   font-weight: bold;
@@ -14,13 +14,13 @@
   border-radius: 4px;
 }
 
-.login_form input {
+.auth_form input {
   margin-bottom: 0.8rem;
   padding: 1rem;
   border: 1px solid #ddd;
 }
 
-.login_form button {
+.auth_form button {
   margin-top: 0.5rem;
   border: none;
   letter-spacing: 0.25rem;
@@ -30,6 +30,6 @@
   cursor: pointer;
 }
 
-.login_form button:hover {
+.auth_form button:hover {
   background: #fb667a;
 }

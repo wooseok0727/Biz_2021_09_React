@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/LoginForm.css";
+import "../css/AuthForm.css";
 
 const LoginForm = () => {
   const [account, setAccount] = useState({
@@ -12,6 +12,8 @@ const LoginForm = () => {
   };
 
   const onLogin = async () => {
+    if (!account.userid) return alert("아이디를 입력하세요");
+    if (!account.password) return alert("비밀번호를 입력하세요");
     const response = await fetch("http://localhost:8080/users/login", {
       method: "POST",
       headers: {
@@ -49,7 +51,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="login_form">
+    <div className="auth_form">
       <input
         name="userid"
         placeholder="아이디를 입력해주세요"
