@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "../css/AuthForm.css";
+import { useUserContext } from "../context/UserContextProvider";
 
 const LoginForm = () => {
+  const { setUser } = useUserContext();
   const [account, setAccount] = useState({
     userid: "",
     password: "",
@@ -19,6 +21,7 @@ const LoginForm = () => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({
         userid: account.userid,
         password: account.password,
@@ -32,21 +35,26 @@ const LoginForm = () => {
     // ES6+ 버전에서 safe null 검사를 수행하는 코드가 있다
     // response 가 정상(null, undefined 가 아니면 .ok 속성을 검사하라)
     // null 로 인한 오류를 방지하는 코드다
+
+    if (response.status === 401) {
+      alert("아이디 또는 비밀번호를 확인하세요");
+    }
     if (response?.ok) {
-      const user = await response.json();
+      const resultUser = await response.json();
       console.log("userid", account.userid);
-      console.log("user", user);
+      console.log("user", resultUser);
       //const user = users.find((item) => item.userid === account.userid);
 
-      if (!user) {
+      if (!resultUser?.userid) {
         alert("아이디가 없습니다");
         return;
       }
-      if (user.password !== account.password) {
+      if (resultUser.password !== account.password) {
         alert("비밀번호가 틀렸습니다");
         return;
       }
       alert("로그인 성공");
+      setUser(resultUser);
     }
   };
 

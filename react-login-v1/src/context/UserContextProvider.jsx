@@ -5,14 +5,14 @@ const AppContext = createContext();
 export const useUserContext = () => useContext(AppContext);
 
 const UserContextProvider = ({ children }) => {
-  const [account, setAccount] = useState({
+  const [user, setUser] = useState({
     userid: "",
     password: "",
     passwordConfirm: "",
     email: "",
   });
 
-  const propsStore = { account, setAccount };
+  const propsStore = { user, setUser };
   return (
     <AppContext.Provider value={propsStore}>{children}</AppContext.Provider>
   );
