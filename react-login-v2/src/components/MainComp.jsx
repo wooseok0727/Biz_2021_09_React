@@ -7,8 +7,8 @@ import Notice from "./Notice";
 import Board from "./Board";
 import { useUserContext } from "../context/UserContextProvider";
 import Logout from "./Logout";
-import Button from "../mycustom/Button";
 import Admin from "./Admin";
+import AuthRoute from "./AuthRoute";
 
 const MainComp = () => {
   const { user } = useUserContext();
@@ -30,14 +30,25 @@ const MainComp = () => {
     <MainNav navList={navList}>
       <Route path="/" exact>
         <h1>홈</h1>
-        <Button>하이</Button>
       </Route>
-      <Route path="/notice" exact component={Notice} />
-      <Route path="/board" exact component={Board} />
+      <Route path="/notice" exact>
+        <AuthRoute>
+          <Notice />
+        </AuthRoute>
+      </Route>
+      <Route path="/board" exact>
+        <AuthRoute>
+          <Board />
+        </AuthRoute>
+      </Route>
       <Route path="/login" exact component={LoginForm} />
       <Route path="/logout" exact component={Logout} />
       <Route path="/join" exact component={JoinForm} />
-      <Route path="/admin" exact component={Admin} />
+      <Route path="/admin" exact>
+        <AuthRoute>
+          <Admin role={user.role} />
+        </AuthRoute>
+      </Route>
     </MainNav>
   );
 };

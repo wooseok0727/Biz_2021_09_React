@@ -8,6 +8,13 @@ const Logout = () => {
 
   useEffect(() => {
     const logout = async () => {
+      await fetch("http://localhost:8080/users/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
       await setUser([]);
       history.replace("/");
     };
