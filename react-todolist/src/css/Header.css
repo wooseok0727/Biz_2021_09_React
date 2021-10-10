@@ -1,0 +1,76 @@
+header {
+  position: fixed;
+  width: 100%;
+  background: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.wrapper {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo_box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6rem;
+  height: 2.375rem;
+  margin-left: 1.25rem;
+  border: 2px solid #000;
+  z-index: 0;
+  overflow: visible;
+}
+
+.logo_box::before,
+.logo_box::after {
+  position: absolute;
+  background: #fff;
+  transition: 0.5s;
+  content: "";
+  z-index: -1;
+}
+
+.logo_box::before,
+.logo_box::after {
+  height: 2.5rem;
+  width: 6.2rem;
+}
+
+.logo_box:hover::before {
+  width: 0;
+}
+
+.logo_box:hover::after {
+  height: 0;
+}
+
+.logo {
+  display: inline-block;
+  font-family: "Space Mono", monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #000;
+  padding: 0 0.5rem;
+}
+
+.main_nav {
+  display: flex;
+  align-items: center;
+}
+
+.sub_title {
+  margin: 0 auto;
+  margin-top: 4rem;
+  padding: 1rem;
+  font-family: "Space Mono", monospace;
+  width: 80%;
+  height: 6rem;
+  font-size: 2.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
