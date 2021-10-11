@@ -16,7 +16,45 @@ const TodoContextProvider = ({ children }) => {
   const nextId = useRef(1);
   const inputId = useRef(null);
 
-  const propsData = { todo, todoList, inputId };
+  const onChange = (e) => {
+    const t_text = e.target.value;
+    setTodo({ ...todo, t_text, t_id: nextId.current });
+  };
+
+  const todoInsert = () => {
+    if (!todo.t_text) {
+      alert("할 일을 입력하세요");
+      inputId.current.focus();
+      return;
+    }
+    setTodoList([...todoList, todo]);
+    setTodo({ ...todo, t_text: "" });
+    nextId.current++;
+  };
+
+  const onRemove = (t_id) => {
+    if (window.confirm("삭제할까요?")) {
+      setTodoList(todoList.filter((todo) => todo.t_id !== t_id));
+    }
+  };
+
+  const onCompClick = (t_id) => {
+    setTodoList(
+      todoList.map((todo) =>
+        todo.t_id === t_id ? { ...todo, t_complete: !todo.t_complete } : todo
+      )
+    );
+  };
+
+  const propsData = {
+    todo,
+    todoList,
+    inputId,
+    onChange,
+    todoInsert,
+    onRemove,
+    onCompClick,
+  };
 
   return (
     <TodoContext.Provider value={propsData}>{children}</TodoContext.Provider>

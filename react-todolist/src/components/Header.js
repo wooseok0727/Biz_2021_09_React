@@ -8,7 +8,7 @@ const Header = ({ title }) => {
   return (
     <>
       <header>
-        <div className="wrapper">
+        <div className="header_wrapper">
           <div className="logo_box">
             <Link to="/" className="logo">
               TODOs
@@ -16,8 +16,10 @@ const Header = ({ title }) => {
           </div>
           {user?.userid ? (
             <nav className="main_nav">
-              <div className="user_info">{user.userid}</div>
-              <Button text="LOGOUT">LOGOUT</Button>
+              <div className="user_info">[ {user.userid} ] </div>
+              <Button text="LOGOUT">
+                <Link to="/logout">LOGOUT</Link>
+              </Button>
             </nav>
           ) : (
             <nav className="main_nav">
