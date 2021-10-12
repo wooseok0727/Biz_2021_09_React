@@ -1,9 +1,27 @@
 import { useEffect, useRef } from "react";
 import "../../css/GoogleButton.css";
+import { useUserContext } from "../../context";
 import google from "../../google.json";
 
 const GoogleButton = () => {
   const buttonRef = useRef();
+
+  const { setUser } = useUserContext();
+
+  const googleResponse = (result) => {
+    const profile = result.getBasicProfile();
+    const email = profile.getEmail();
+    const id = profile.getId();
+    const name = profile.getName();
+    const image = profile.getImageUrl();
+    const Token = result.getAuthResponse().id_token;
+
+    setUser({
+      userid: email,
+      login_source: "GOOGLE",
+    });
+    alert(email + " 님 반갑습니다");
+  };
 
   /**
    * public/index.html 파일에 script를 import 한다
@@ -23,11 +41,15 @@ const GoogleButton = () => {
         client_id: google.web.client_id,
         scope: "profile email",
       });
+      if (auth2?.isSignedIn.get()) {
+        console.log("로그인이 이미 된상태");
+        // 원하는 곳으로 redirect
+      }
 
-      await auth2.attachClickHandler(buttonRef.current, {});
+      await auth2.attachClickHandler(buttonRef.current, {}, googleResponse);
     });
   };
-  useEffect(googleSDK_init, []);
+  useEffect(googleSDK_init, [googleSDK_init]);
 
   const logout = () => {
     const auth2 = window.gapi.auth2.getAuthInstance();
