@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../index";
+import { Button, Modal } from "../index";
 import ink from "../../assets/ink.mp4";
 import "../../css/LoginForm.css";
 import { useUserContext } from "../../context/";
@@ -13,15 +13,37 @@ const LoginForm = () => {
     password: "",
   });
 
+  const [modal, setModal] = useState(false);
+  const [message, setMessage] = useState();
+
   const history = useHistory();
 
   const onChange = (e) => {
     setAccount({ ...account, [e.target.name]: e.target.value });
   };
 
+  const onCheck = () => {
+    if (!account.userid) return `PLEASE ENTER YOUR "ID"`;
+    if (!account.password) return `PLEASE ENTER YOUR "PASSWORD"`;
+    return false;
+  };
+
+  const onModal = () => {
+    const result = onCheck();
+    if (!result) {
+      onLogin();
+    } else {
+      setModal(true);
+      setMessage(result);
+    }
+  };
+
+  const onConfirm = () => {
+    setModal(false);
+    setMessage(false);
+  };
+
   const onLogin = async () => {
-    if (!account.userid) return alert("아이디를 입력하세요");
-    if (!account.password) return alert("비밀번호를 입력하세요");
     const resultUser = await fetchLogin(account.userid, account.password);
     await setUser(resultUser);
     history.replace("/");
@@ -39,6 +61,7 @@ const LoginForm = () => {
             name="userid"
             autoComplete="off"
             onChange={onChange}
+            className={account.userid && "focus"}
           />
           <span className="label">ID</span>
           <svg width="120px" height="26px" viewBox="0 0 120 26">
@@ -52,6 +75,7 @@ const LoginForm = () => {
             name="password"
             autoComplete="off"
             onChange={onChange}
+            className={account.password && "focus"}
           />
           <span className="label">PASSWORD</span>
           <svg width="120px" height="26px" viewBox="0 0 120 26">
@@ -59,10 +83,11 @@ const LoginForm = () => {
           </svg>
           <span className="border"></span>
         </div>
-        <Button text="LOGIN" onClick={onLogin}>
+        <Button text="LOGIN" onClick={onModal}>
           LOGIN
         </Button>
       </div>
+      {modal && <Modal title={message} onConfirm={onConfirm} />}
     </div>
   );
 };

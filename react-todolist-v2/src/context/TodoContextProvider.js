@@ -23,9 +23,8 @@ const TodoContextProvider = ({ children }) => {
 
   const todoInsert = () => {
     if (!todo.t_text) {
-      alert("할 일을 입력하세요");
       inputId.current.focus();
-      return;
+      return true;
     }
     setTodoList([...todoList, todo]);
     setTodo({ ...todo, t_text: "" });
@@ -33,9 +32,7 @@ const TodoContextProvider = ({ children }) => {
   };
 
   const onRemove = (t_id) => {
-    if (window.confirm("삭제할까요?")) {
-      setTodoList(todoList.filter((todo) => todo.t_id !== t_id));
-    }
+    setTodoList(todoList.filter((todo) => todo.t_id !== t_id));
   };
 
   const onCompClick = (t_id) => {
