@@ -327,7 +327,7 @@
                       Object(j.jsx)("div", {
                         className: "logo_box",
                         children: Object(j.jsx)(C.b, {
-                          to: "/Biz_2021_09_React",
+                          to: "/docs/index.html",
                           className: "logo",
                           children: "TODOs",
                         }),
@@ -613,7 +613,7 @@
                 children: [
                   Object(j.jsx)(N, {}),
                   Object(j.jsx)(r.a, {
-                    path: "/Biz_2021_09_React",
+                    path: "/docs/index.html",
                     exact: !0,
                     children: Object(j.jsx)(m, {
                       form: Object(j.jsx)(v, {}),
