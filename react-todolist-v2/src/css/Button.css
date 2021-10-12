@@ -1,0 +1,61 @@
+.btn_box {
+  position: relative;
+  width: 4.375rem;
+  height: 2.5rem;
+  overflow: hidden;
+  font-family: "Space Mono", monospace;
+  font-weight: 300;
+  transition: 0.5s;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  margin-right: 0.3rem;
+}
+
+.mask {
+  position: absolute;
+  color: #000;
+  text-align: center;
+  width: 101%;
+  font-size: 0.75rem;
+  margin-top: 0.813rem;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+button {
+  width: 101%;
+  height: 100%;
+  font-family: "Space Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+  background: #000;
+  mask: url("../assets/btn.png");
+  mask-size: 7100% 100%;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  animation: ani2 0.7s steps(70) forwards;
+}
+
+button:hover {
+  animation: ani 0.7s steps(70) forwards;
+}
+
+@keyframes ani {
+  from {
+    mask-position: 100% 0;
+  }
+  to {
+    mask-position: 0 0;
+  }
+}
+
+@keyframes ani2 {
+  from {
+    mask-position: 0 0;
+  }
+  to {
+    mask-position: 100% 0;
+  }
+}

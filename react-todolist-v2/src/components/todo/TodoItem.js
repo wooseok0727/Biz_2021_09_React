@@ -1,4 +1,4 @@
-import "../css/TodoItem.css";
+import "../../css/TodoItem.css";
 
 const TodoItem = ({ todo, onRemove, onCompClick }) => {
   const { t_id, t_text } = todo;

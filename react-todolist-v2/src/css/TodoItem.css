@@ -1,0 +1,129 @@
+.todo {
+  display: block;
+  position: relative;
+  padding: 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  overflow-x: hidden;
+}
+
+.todo:last-child {
+  border-bottom: none;
+}
+
+.todo_state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.todo_text {
+  font-weight: bold;
+  font-family: "Space Mono", monospace;
+  transition: all 0.4s linear 0.4s;
+  width: 100%;
+}
+
+.todo_box {
+  position: relative;
+  width: 100%;
+}
+
+.todo_remove {
+  position: absolute;
+  top: 0.4rem;
+  right: -2rem;
+  font-weight: bold;
+  font-size: 1.7rem;
+  transition: 0.8s;
+  opacity: 0;
+}
+
+.todo_box:hover .todo_remove {
+  opacity: 1;
+}
+
+.todo_icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0.7rem;
+  margin: auto 0;
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.todo_line,
+.todo_box,
+.todo_check {
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.9, 0, 0.5, 1);
+}
+
+.todo_circle {
+  stroke: #000;
+  stroke-dasharray: 1 6;
+  stroke-width: 0;
+  transform-origin: 13.5px 12.5px;
+  transform: scale(0.4) rotate(0deg);
+  animation: none 0.8s linear;
+}
+
+@keyframes explode {
+  30% {
+    stroke-width: 3;
+    stroke-opacity: 1;
+    transform: scale(0.8) rotate(40deg);
+  }
+  100% {
+    stroke-width: 0;
+    stroke-opacity: 0;
+    transform: scale(1.1) rotate(60deg);
+  }
+}
+
+.todo_box {
+  stroke-dasharray: 56.1053, 56.1053;
+  stroke-dashoffset: 0;
+  transition-delay: 0.16s;
+}
+
+.todo_check {
+  stroke: #000;
+  stroke-dasharray: 9.8995, 9.8995;
+  stroke-dashoffset: 9.8995;
+  transition-duration: 0.32s;
+}
+
+.todo_line {
+  stroke-dasharray: 1800, 18000;
+  stroke-dashoffset: 1800;
+}
+
+.todo_circle {
+  animation-delay: 0.56s;
+  animation-duration: 0.56s;
+}
+
+.todo_state:checked ~ .todo_text {
+  transition-delay: 0s;
+  color: #000;
+  opacity: 0.4;
+}
+.todo_state:checked ~ .todo_icon .todo_box {
+  stroke-dashoffset: 56.1053;
+  transition-delay: 0s;
+}
+.todo_state:checked ~ .todo_icon .todo_line {
+  stroke-dashoffset: -8;
+}
+.todo_state:checked ~ .todo_icon .todo_check {
+  stroke-dashoffset: 0;
+  transition-delay: 0.48s;
+}
+.todo_state:checked ~ .todo_icon .todo_circle {
+  animation-name: explode;
+}
