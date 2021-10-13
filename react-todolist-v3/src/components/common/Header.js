@@ -29,9 +29,9 @@ const Header = ({ title }) => {
               <Button text="LOGIN">
                 <Link to="/login">LOGIN</Link>
               </Button>
-              {/* <GoogleButton>
+              <GoogleButton>
                 <Link to="/gogle">Gogle LOGIN</Link>
-              </GoogleButton> */}
+              </GoogleButton>
             </nav>
           )}
         </div>
